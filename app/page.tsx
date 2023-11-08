@@ -75,8 +75,8 @@ export default function Home() {
 
   {Number(result) > 0 &&
         <>
-          <p>Probabilidad 1: {amountOne}</p>
-          <p>Probabilidad 2: {amountTwo}</p>
+          <p>Cantidad 1: {amountOne}</p>
+          <p>Cantidad 2: {amountTwo}</p>
         </>
 
       }
