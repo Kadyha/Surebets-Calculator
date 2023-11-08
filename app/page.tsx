@@ -4,31 +4,31 @@ import { useState } from 'react';
 
 
 export default function Home() {
-  const [valueOne, setValueOne] = useState(NaN);
-  const [valueTwo, setValueTwo] = useState(NaN);
-  const [valueThree, setValueThree] = useState(NaN);
-  const [totalValue, setTotalValue] = useState(NaN);
-  const [result, setResult] = useState(NaN);
-  const [amountOne, setAmountOne] = useState(NaN);
-  const [amountTwo, setAmountTwo] = useState(NaN);
-  const [amountThree, setAmountThree] = useState(NaN);
+  const [valueOne, setValueOne] = useState('');
+  const [valueTwo, setValueTwo] = useState('');
+  const [valueThree, setValueThree] = useState('');
+  const [totalValue, setTotalValue] = useState('');
+  const [result, setResult] = useState('');
+  const [amountOne, setAmountOne] = useState('');
+  const [amountTwo, setAmountTwo] = useState('');
+  const [amountThree, setAmountThree] = useState('');
 
   const handleEqual = () => {
     var temp1 = 0;
-    if (valueThree == 0 || Number.isNaN(valueThree)) {
-      temp1 = 1 / ((1 / valueOne) + (1 / valueTwo));
+    if (valueThree == '0' || valueThree == '') {
+      temp1 = 1 / ((1 / Number(valueOne)) + (1 / Number(valueTwo)));
     } else {
-      temp1 = 1 / ((1 / valueOne) + (1 / valueTwo) + (1 / valueThree));
+      temp1 = 1 / ((1 / Number(valueOne)) + (1 / Number(valueTwo)) + (1 / Number(valueThree)));
     }
 
-    setAmountOne((1 / valueOne) * temp1 * totalValue)
-    setAmountTwo((1 / valueTwo) * temp1 * totalValue)
-    setAmountThree((1 / valueThree) * temp1 * totalValue)
+    setAmountOne(String((1 / Number(valueOne)) * temp1 * Number(totalValue)))
+    setAmountTwo(String((1 / Number(valueTwo)) * temp1 * Number(totalValue)))
+    setAmountThree(String((1 / Number(valueThree)) * temp1 * Number(totalValue)))
 
 
 
 
-    setResult(10)
+    setResult('10')
   };
 
 
@@ -39,7 +39,7 @@ export default function Home() {
           <label>Cuota 1: </label>
           <input
             value={valueOne}
-            onChange={e => setValueOne(Number(e.target.value))}
+            onChange={e => setValueOne((e.target.value))}
             type="number"
             defaultValue={0}
             placeholder="Cuota 1"
@@ -50,7 +50,7 @@ export default function Home() {
           <label>Cuota 2: </label>
           <input
             value={valueTwo}
-            onChange={e => setValueTwo(Number(e.target.value))}
+            onChange={e => setValueTwo((e.target.value))}
             type="number"
             defaultValue={0}
             placeholder="Cuota 2"
@@ -61,7 +61,7 @@ export default function Home() {
           <label>Cuota 3: </label>
           <input
             value={valueThree}
-            onChange={e => setValueThree(Number(e.target.value))}
+            onChange={e => setValueThree((e.target.value))}
             type="number"
             placeholder="Cuota 3"
             style={{ color: 'black', backgroundColor: 'white' }} />
@@ -71,7 +71,7 @@ export default function Home() {
           <label>Tamaño total de la apuesta: </label>
           <input
             value={totalValue}
-            onChange={e => setTotalValue(Number(e.target.value))}
+            onChange={e => setTotalValue((e.target.value))}
             type="number"
             defaultValue={0}
             placeholder="Tamaño total de la apuesta"
@@ -82,13 +82,13 @@ export default function Home() {
 
         <button onClick={handleEqual}>Calcular</button> <br />
 
-        {(valueThree == 0 || Number.isNaN(valueThree)) &&
+        {(valueThree == '0' || valueThree == '') &&
           <>
             <p>Cantidad 1: {parseFloat(String(amountOne)).toFixed(2)}</p>
             <p>Cantidad 2: {parseFloat(String(amountTwo)).toFixed(2)}</p>
           </>          
         }
-        {valueThree > 0   &&
+        {Number(valueThree) > 0   &&
           <>
             <p>Cantidad 1: {parseFloat(String(amountOne)).toFixed(2)}</p>
             <p>Cantidad 2: {parseFloat(String(amountTwo)).toFixed(2)}</p>
