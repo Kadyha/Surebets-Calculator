@@ -75,8 +75,8 @@ export default function Home() {
 
   {Number(result) > 0 &&
         <>
-          <p>Cantidad 1: {amountOne}</p>
-          <p>Cantidad 2: {amountTwo}</p>
+          <p>Cantidad 1: {parseFloat(amountOne).toFixed(2)}</p>
+          <p>Cantidad 2: {parseFloat(amountTwo).toFixed(2)}</p>
         </>
 
       }
