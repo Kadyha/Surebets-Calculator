@@ -1,18 +1,89 @@
-import Image from 'next/image'
+"use client"; 
+
+import { useState } from 'react';
+
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          surebets calculator in progress...&nbsp;
-        </p>
-       
-      </div>
+  const [valueOne, setValueOne] = useState(''); 
+  const [valueTwo, setValueTwo] = useState(''); 
+  const [valueThree, setValueThree] = useState(''); 
+  const [totalValue, setTotalValue] = useState(''); 
+  const [result, setResult] = useState(''); 
+  const [amountOne, setAmountOne] = useState(''); 
+  const [amountTwo, setAmountTwo] = useState(''); 
+  const [amountThree, setAmountThree] = useState(''); 
 
+  const handleEqual = () => {
+    const temp1 = 1/((1/Number(valueOne))+(1/Number(valueTwo)));
     
-
+    setAmountOne(String((1/Number(valueOne))*1/((1/Number(valueOne))+(1/Number(valueTwo)))*Number(totalValue)))
+    setAmountTwo(String((1/Number(valueTwo))*1/((1/Number(valueOne))+(1/Number(valueTwo)))*Number(totalValue)))
+    setResult('10')
+  };
+  
+  
+  return (
+    <>
+      <main className="flex min-h-screen flex-col items-center  p-24">
+      <div>
+        <label>Cuota 1: </label>
+        <input 
+        value={valueOne}
+        onChange={e => setValueOne(e.target.value)} 
+        type="number" 
+        defaultValue={0}
+        placeholder="Cuota 1"
+        style={{color: 'black', backgroundColor: 'white'}}/>
+      </div> <br />     
       
-    </main>
-  )
+      <div>
+        <label>Cuota 2: </label>
+        <input 
+        value={valueTwo}
+        onChange={e => setValueTwo(e.target.value)} 
+        type="number" 
+        defaultValue={0}
+        placeholder="Cuota 2"
+        style={{color: 'black', backgroundColor: 'white'}}/>
+      </div> <br />
+      
+      <div>
+        <label>Cuota 3: </label>
+        <input 
+        value={valueThree}
+        onChange={e => setValueThree(e.target.value)} 
+        type="number" 
+        defaultValue={0}
+        placeholder="Cuota 3"
+        style={{color: 'black', backgroundColor: 'white'}}/>
+      </div> <br />
+      
+      <div>
+        <label>Tamaño total de la apuesta: </label>
+        <input 
+        value={totalValue}
+        onChange={e => setTotalValue(e.target.value)} 
+        type="number" 
+        defaultValue={0}
+        placeholder="Tamaño total de la apuesta"
+        style={{color: 'black', backgroundColor: 'white'}}/>
+      </div> <br />
+      
+     
+      
+      <button onClick={handleEqual}>Calcular</button> <br />
+
+  {Number(result) > 0 &&
+        <>
+          <p>Probabilidad 1: {amountOne}</p>
+          <p>Probabilidad 2: {amountTwo}</p>
+        </>
+
+      }
+
+
+      </main>
+    </>
+  );
 }
+
