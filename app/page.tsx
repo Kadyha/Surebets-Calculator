@@ -9,21 +9,22 @@ export default function Home() {
   const [valueThree, setValueThree] = useState('');
   const [totalValue, setTotalValue] = useState('');
   const [result, setResult] = useState('');
-  const [amountOne, setAmountOne] = useState('');
-  const [amountTwo, setAmountTwo] = useState('');
-  const [amountThree, setAmountThree] = useState('');
+  const [amountOne, setAmountOne] = useState('0');
+  const [amountTwo, setAmountTwo] = useState('0');
+  const [amountThree, setAmountThree] = useState('0');
 
   const handleEqual = () => {
-    var temp1 = 0;
+    var temp1 = 0;   
+
     if (valueThree == '0' || valueThree == '') {
       temp1 = 1 / ((1 / Number(valueOne)) + (1 / Number(valueTwo)));
     } else {
       temp1 = 1 / ((1 / Number(valueOne)) + (1 / Number(valueTwo)) + (1 / Number(valueThree)));
+      setAmountThree(String((1 / Number(valueThree)) * temp1 * Number(totalValue)))
     }
 
     setAmountOne(String((1 / Number(valueOne)) * temp1 * Number(totalValue)))
     setAmountTwo(String((1 / Number(valueTwo)) * temp1 * Number(totalValue)))
-    setAmountThree(String((1 / Number(valueThree)) * temp1 * Number(totalValue)))
 
 
 
