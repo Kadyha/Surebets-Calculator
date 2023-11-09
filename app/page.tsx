@@ -15,7 +15,7 @@ export default function Home() {
   const [loss, setLoss] = useState('0');
 
   const handleEqual = () => {
-    var temp1 = 0;   
+    var temp1 = 0;
 
     if (valueThree == '0' || valueThree == '') {
       temp1 = 1 / ((1 / Number(valueOne)) + (1 / Number(valueTwo)));
@@ -26,10 +26,10 @@ export default function Home() {
 
     setAmountOne(String((1 / Number(valueOne)) * temp1 * Number(totalValue)))
     setAmountTwo(String((1 / Number(valueTwo)) * temp1 * Number(totalValue)))
-    
-    setGain(String((Number(valueOne)*((1 / Number(valueOne)) * temp1 * Number(totalValue)))-Number(totalValue)))
-    
-    setLoss(String(100*((Number(valueOne)*((1 / Number(valueOne)) * temp1 * Number(totalValue)))-Number(totalValue))/Number(totalValue)))
+
+    setGain(String((Number(valueOne) * ((1 / Number(valueOne)) * temp1 * Number(totalValue))) - Number(totalValue)))
+
+    setLoss(String(100 * ((Number(valueOne) * ((1 / Number(valueOne)) * temp1 * Number(totalValue))) - Number(totalValue)) / Number(totalValue)))
 
 
     setResult('10')
@@ -87,25 +87,26 @@ export default function Home() {
         <button onClick={handleEqual}>Calcular</button> <br />
 
 
-        {Number(loss) != 0   &&
+        {Number(loss) != 0 &&
           <>
-         <p>Cantidad 1: {parseFloat(String(amountOne)).toFixed(2)}</p>
+            <p>Cantidad 1: {parseFloat(String(amountOne)).toFixed(2)}</p>
             <p>Cantidad 2: {parseFloat(String(amountTwo)).toFixed(2)}</p>
+            {Number(valueThree) > 0 &&
+              <>
+                <p>Cantidad 3: {parseFloat(String(amountThree)).toFixed(2)}</p>
+              </>
+            }
             <p>Beneficio: {parseFloat(String(gain)).toFixed(2)}</p>
             <p>%  {parseFloat(String(loss)).toFixed(2)}</p>
-            
-        
-        {Number(valueThree) > 0   &&
-          <>
-            <p>Cantidad 3: {parseFloat(String(amountThree)).toFixed(2)}</p>
-          </>          
-        }
-         
-         
-          </>          
+
+
+
+
+
+          </>
         }
 
-            
+
 
       </main>
 
