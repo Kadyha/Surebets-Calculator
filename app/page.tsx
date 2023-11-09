@@ -77,7 +77,7 @@ export default function Home() {
           <label>Tamaño total de la apuesta: </label>
         </div>
 
-
+      
 
 
         <button className="submit" onClick={handleEqual}> Calcular</button> <br />
@@ -99,7 +99,7 @@ export default function Home() {
 
           </>
         }
-      </div>
+      </div>     
     </>
   );
 }
