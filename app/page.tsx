@@ -89,16 +89,18 @@ export default function Home() {
 
         {Number(loss) != 0 &&
           <>
-            <p>Cantidad 1: {parseFloat(String(amountOne)).toFixed(2)}</p>
-            <p>Cantidad 2: {parseFloat(String(amountTwo)).toFixed(2)}</p>
+            <p>Cantidad 1: {parseFloat((amountOne)).toFixed(2)}</p>
+            <p>Cantidad 2: {parseFloat((amountTwo)).toFixed(2)}</p>
             {Number(valueThree) > 0 &&
               <>
-                <p>Cantidad 3: {parseFloat(String(amountThree)).toFixed(2)}</p>
+                <p>Cantidad 3: {parseFloat((amountThree)).toFixed(2)}</p>
               </>
             }
-            <p>Beneficio: {parseFloat(String(gain)).toFixed(2)}</p>
-            <p>%  {parseFloat(String(loss)).toFixed(2)}</p>
+<div  />
 
+              <p>Beneficio:  <span style={ (Number(gain) < 0) ? {color: 'red' } : {color: 'green'}} >{parseFloat((gain)).toFixed(2)} </span>
+              &nbsp;&nbsp;
+              %  <span style={ (Number(loss) < 0) ? {color: 'red' } : {color: 'green'}} >{parseFloat((loss)).toFixed(2)} </span> </p>
 
 
 
