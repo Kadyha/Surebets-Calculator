@@ -1,118 +1,216 @@
-"use client";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-import { useState } from 'react';
-
-export default function Home() {
-  const [valueOne, setValueOne] = useState('');
-  const [valueTwo, setValueTwo] = useState('');
-  const [valueThree, setValueThree] = useState('');
-  const [totalValue, setTotalValue] = useState('');
-  const [result, setResult] = useState('');
-  const [amountOne, setAmountOne] = useState('0');
-  const [amountTwo, setAmountTwo] = useState('0');
-  const [amountThree, setAmountThree] = useState('0');
-  const [gain, setGain] = useState('0');
-  const [loss, setLoss] = useState('0');
-
-  const handleEqual = () => {
-    var temp1 = 0;
-
-    if (valueThree == '0' || valueThree == '') {
-      temp1 = 1 / ((1 / Number(valueOne)) + (1 / Number(valueTwo)));
-    } else {
-      temp1 = 1 / ((1 / Number(valueOne)) + (1 / Number(valueTwo)) + (1 / Number(valueThree)));
-      setAmountThree(String((1 / Number(valueThree)) * temp1 * Number(totalValue)))
-    }
-
-    setAmountOne(String((1 / Number(valueOne)) * temp1 * Number(totalValue)))
-    setAmountTwo(String((1 / Number(valueTwo)) * temp1 * Number(totalValue)))
-
-    setGain(String((Number(valueOne) * ((1 / Number(valueOne)) * temp1 * Number(totalValue))) - Number(totalValue)))
-
-    setLoss(String(100 * ((Number(valueOne) * ((1 / Number(valueOne)) * temp1 * Number(totalValue))) - Number(totalValue)) / Number(totalValue)))
-
-
-    setResult('10')
-  };
-
-
-  return (
-    <>
-      <main className="flex min-h-screen flex-col items-center  p-24">
-        <div>
-          <label>Cuota 1: </label>
-          <input
-            value={valueOne}
-            onChange={e => setValueOne((e.target.value))}
-            type="number"
-            defaultValue={0}
-            placeholder="Cuota 1"
-            style={{ color: 'black', backgroundColor: 'white' }} />
-        </div> <br />
-
-        <div>
-          <label>Cuota 2: </label>
-          <input
-            value={valueTwo}
-            onChange={e => setValueTwo((e.target.value))}
-            type="number"
-            defaultValue={0}
-            placeholder="Cuota 2"
-            style={{ color: 'black', backgroundColor: 'white' }} />
-        </div> <br />
-
-        <div>
-          <label>Cuota 3: </label>
-          <input
-            value={valueThree}
-            onChange={e => setValueThree((e.target.value))}
-            type="number"
-            placeholder="Cuota 3"
-            style={{ color: 'black', backgroundColor: 'white' }} />
-        </div> <br />
-
-        <div>
-          <label>Tamaño total de la apuesta: </label>
-          <input
-            value={totalValue}
-            onChange={e => setTotalValue((e.target.value))}
-            type="number"
-            defaultValue={0}
-            placeholder="Tamaño total de la apuesta"
-            style={{ color: 'black', backgroundColor: 'white' }} />
-        </div> <br />
-
-
-
-        <button onClick={handleEqual}>Calcular</button> <br />
-
-
-        {Number(loss) != 0 &&
-          <>
-            <p>Cantidad 1: {parseFloat((amountOne)).toFixed(2)}</p>
-            <p>Cantidad 2: {parseFloat((amountTwo)).toFixed(2)}</p>
-            {Number(valueThree) > 0 &&
-              <>
-                <p>Cantidad 3: {parseFloat((amountThree)).toFixed(2)}</p>
-              </>
-            }
-<div  />
-
-              <p>Beneficio:  <span style={ (Number(gain) < 0) ? {color: 'red' } : {color: '#46931A'}} >{parseFloat((gain)).toFixed(2)} </span>
-              &nbsp;&nbsp;
-              %  <span style={ (Number(loss) < 0) ? {color: 'red' } : {color: '#46931A'}} >{parseFloat((loss)).toFixed(2)} </span> </p>
-
-
-
-
-          </>
-        }
-
-
-
-      </main>
-
-    </>
-  );
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+
+
+html {
+  height: 100%;
+}
+body {
+  margin:0;
+  padding:0;
+  font-family: sans-serif;
+  background: linear-gradient(#141e30, #243b55);
+}
+
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.login-box .user-box label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+.login-box form button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #03e9f4;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+
+.login-box button:hover {
+  background: #03e9f4;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #03e9f4,
+              0 0 25px #03e9f4,
+              0 0 50px #03e9f4,
+              0 0 100px #03e9f4;
+}
+
+.login-box p {
+  color: #fff;
+}
+
+
+.login-box a button span {
+  position: absolute;
+  display: block;
+}
+
+.login-box a button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #03e9f4);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,100% {
+    left: 100%;
+  }
+}
+
+.login-box a button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #03e9f4);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,100% {
+    top: 100%;
+  }
+}
+
+.login-box a button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #03e9f4);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,100% {
+    right: 100%;
+  }
+}
+
+.login-box a span:nth-child(4) button {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,100% {
+    bottom: 100%;
+  }
+}
+
+
+.submit {
+  background-color: #08d;
+  border-radius: 12px;
+  border: 0;
+  box-sizing: border-box;
+  color: #eee;
+  cursor: pointer;
+  font-size: 18px;
+  height: 50px;
+  margin-top: 38px;
+  outline: 0;
+  width: 100%;
+  background: linear-gradient(360deg, transparent, #03e9f4);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s
+}
+
+.submit:active {
+  background-color: #06b;
+}
+
 
