@@ -98,9 +98,9 @@ export default function Home() {
             }
 <div  />
 
-              <p>Beneficio:  <span style={ (Number(gain) < 0) ? {color: 'red' } : {color: 'green'}} >{parseFloat((gain)).toFixed(2)} </span>
+              <p>Beneficio:  <span style={ (Number(gain) < 0) ? {color: 'red' } : {color: '#46931A'}} >{parseFloat((gain)).toFixed(2)} </span>
               &nbsp;&nbsp;
-              %  <span style={ (Number(loss) < 0) ? {color: 'red' } : {color: 'green'}} >{parseFloat((loss)).toFixed(2)} </span> </p>
+              %  <span style={ (Number(loss) < 0) ? {color: 'red' } : {color: '#46931A'}} >{parseFloat((loss)).toFixed(2)} </span> </p>
 
 
 
